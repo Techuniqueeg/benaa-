@@ -40,7 +40,7 @@ Route::get('cache', function () {
 });
 
 
-    Route::get('/',function (){return redirect()->route('admin');})->name('front.home');
+    Route::get('/',function (){return 'web';})->name('front.home');
 
 
 
