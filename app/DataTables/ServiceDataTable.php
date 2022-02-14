@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\HomeSlider;
+use App\Models\Service;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class HomeSliderDataTable extends DataTable
+class ServiceDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,19 +21,17 @@ class HomeSliderDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('image', '<img class="img-thumbnail" src="{{$image}}" style="height: 75px; width: 75px;">')
-            ->addColumn('action', 'dashboard.slider.parts.action')
-            ->rawColumns(['action', 'image']);
-
+            ->addColumn('action', 'dashboard.service.parts.action')
+            ->rawColumns(['action']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\HomeSlider $model
+     * @param \App\Models\Service $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(HomeSlider $model)
+    public function query(Service $model)
     {
         return $model->newQuery();
     }
@@ -46,14 +44,14 @@ class HomeSliderDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('homeslider-table')
+                    ->setTableId('service-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(1)
+            ->orderBy(0)
             ->lengthMenu(
                 [
                     [10, 25, 50, -1],
-                    ['10 صـفوف', '25 صـف', '50 صـف', 'كل الصـفوف']
+                    ['10 rows', '25 rows', '50 rows', 'Show all']
                 ])
             ->parameters([
                 'language' => ['url' => '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json']
@@ -68,10 +66,8 @@ class HomeSliderDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('url')->title('العنوان'),
-            Column::make('image')->title('الصوره'),
+            Column::make('title')->title('عنوان الخدمه'),
             Column::make('action')->title('الاجرائات'),
-
         ];
     }
 
@@ -82,6 +78,6 @@ class HomeSliderDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'HomeSlider_' . date('YmdHis');
+        return 'Service_' . date('YmdHis');
     }
 }

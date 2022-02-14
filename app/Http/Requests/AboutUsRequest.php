@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class CityRequest extends FormRequest
+class AboutUsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +26,15 @@ class CityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'image' => [
+                'nullable',
+                'mimes:jpeg,jpg,png',
+                Rule::requiredIf(function () {
+                    return Request::routeIs('about.store');
+                })
+            ],
         ];
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class HomeConentRequest extends FormRequest
+class SliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +26,14 @@ class HomeConentRequest extends FormRequest
     public function rules()
     {
         return [
-            'head_title' => 'required|max:255',
-            'head_content' => 'required',
-            'dream_details' => 'required',
-            'culture_details' => 'required',
-            'head_image' => [
+            'title' => 'required|max:255',
+            'image' => [
                 'nullable',
                 'mimes:jpeg,jpg,png',
-                Rule::requiredIf(function() {
-                    return Request::routeIs('contents.store');
+                Rule::requiredIf(function () {
+                    return Request::routeIs('sliders.store');
                 })
-            ]
-
+            ],
         ];
     }
 }

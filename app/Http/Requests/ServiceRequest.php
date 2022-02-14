@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
-class BlogRequest extends FormRequest
+class ServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +24,8 @@ class BlogRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'title' => 'required|max:255',
             'description' => 'required',
-            'cat_id'=>'required|exists:categories,id',
-            'image' => [
-                'nullable',
-                'mimes:jpeg,jpg,png',
-                Rule::requiredIf(function() {
-                    return Request::routeIs('blogs.store');
-                })
-            ]
         ];
     }
 }

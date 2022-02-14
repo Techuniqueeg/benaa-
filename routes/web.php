@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Dashboard\BlogController;
-use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\AboutUsController;
+use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\SettingController;
-use App\Http\Controllers\Dashboard\TripController;
+use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\InboxController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
@@ -43,36 +43,29 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin');
 
 
-//categories
-Route::group(['prefix' => 'categories','middleware'=>'auth:web'],function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('categories');
-    Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('store', [CategoryController::class, 'store'])->name('categories.store');
-    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::post('update/{id}', [CategoryController::class, 'update'])->name('categories.update');
-    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+//services
+Route::group(['prefix' => 'services','middleware'=>'auth'],function () {
+    Route::get('/', [ServiceController::class, 'index'])->name('services');
+    Route::get('create', [ServiceController::class, 'create'])->name('services.create');
+    Route::post('store', [ServiceController::class, 'store'])->name('services.store');
+    Route::get('edit/{id}', [ServiceController::class, 'edit'])->name('services.edit');
+    Route::post('update/{id}', [ServiceController::class, 'update'])->name('services.update');
+    Route::get('delete/{id}', [ServiceController::class, 'delete'])->name('services.delete');
 });
 
-//Trips
-Route::group(['prefix' => 'trips','middleware'=>'auth'],function () {
-    Route::get('/', [TripController::class, 'index'])->name('trips');
-    Route::get('create', [TripController::class, 'create'])->name('trips.create');
-    Route::get('generate_days/{count}/{trip_id}', [TripController::class, 'generate_days'])->name('trips.generate_days');
-    Route::post('store', [TripController::class, 'store'])->name('trips.store');
-    Route::get('edit/{id}', [TripController::class, 'edit'])->name('trips.edit');
-    Route::post('update/{id}', [TripController::class, 'update'])->name('trips.update');
-    Route::get('delete/{id}', [TripController::class, 'delete'])->name('trips.delete');
-    Route::get('delete/image/{id}', [TripController::class, 'deleteTripImage'])->name('image.delete');
-    Route::post('upload_images', [TripController::class, 'upload_images'])->name('trips.upload_images');
+//sliders
+Route::group(['prefix' => 'sliders','middleware'=>'auth'],function () {
+    Route::get('/', [SliderController::class, 'index'])->name('sliders');
+    Route::get('create', [SliderController::class, 'create'])->name('sliders.create');
+    Route::post('store', [SliderController::class, 'store'])->name('sliders.store');
+    Route::get('edit/{id}', [SliderController::class, 'edit'])->name('sliders.edit');
+    Route::post('update/{id}', [SliderController::class, 'update'])->name('sliders.update');
+    Route::get('delete/{id}', [SliderController::class, 'delete'])->name('sliders.delete');
 });
-//Blogs
-Route::group(['prefix' => 'blogs','middleware'=>'auth'],function () {
-    Route::get('/', [BlogController::class, 'index'])->name('blogs');
-    Route::get('create', [BlogController::class, 'create'])->name('blogs.create');
-    Route::post('store', [BlogController::class, 'store'])->name('blogs.store');
-    Route::get('edit/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
-    Route::post('update/{id}', [BlogController::class, 'update'])->name('blogs.update');
-    Route::get('delete/{id}', [BlogController::class, 'delete'])->name('blogs.delete');
+//about us
+Route::group(['prefix' => 'aboutUs','middleware'=>'auth'],function () {
+    Route::get('edit/{id}', [AboutUsController::class, 'edit'])->name('about.edit');
+    Route::post('update/{id}', [AboutUsController::class, 'update'])->name('about.update');
 });
 //settings
 Route::group(['prefix' => 'settings'],function () {

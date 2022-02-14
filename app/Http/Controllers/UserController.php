@@ -70,11 +70,7 @@ class UserController extends Controller
         return msgdata($request, success(), 'تم تسجيل الدخول', $user_data);
     }
 
-    /**
-     * Logout user
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function logout()
     {
         auth()->logout();
@@ -82,33 +78,11 @@ class UserController extends Controller
         return response()->json(['message' => 'User successfully logged out.']);
     }
 
-    /**
-     * Refresh token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
     }
 
-    /**
-     * Get user profile.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function profile()
-    {
-        return response()->json(auth()->user());
-    }
-
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     protected function respondWithToken($token)
     {
         return response()->json([

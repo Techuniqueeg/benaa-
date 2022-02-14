@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Work;
+use App\Models\AboutU;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class WorkDataTable extends DataTable
+class AboutUsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,18 +21,16 @@ class WorkDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('image','<img class="img-thumbnail" src="{{$image}}" style="height: 75px; width: 75px;">')
-            ->addColumn('action', 'dashboard.work.parts.action')
-            ->rawColumns(['action','image']);
+            ->addColumn('action', 'aboutus.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Work $model
+     * @param \App\Models\AboutU $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Work $model)
+    public function query(AboutU $model)
     {
         return $model->newQuery();
     }
@@ -45,19 +43,20 @@ class WorkDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('work-table')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->orderBy(1)
-            ->lengthMenu(
-                [
-                    [10, 25, 50, -1],
-                    ['10 rows', '25 rows', '50 rows', 'Show all']
-                ])
-            ->parameters([
-                'language' => ['url' => '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json']
-            ]);
+                    ->setTableId('aboutus-table')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->buttons(
+                        Button::make('create'),
+                        Button::make('export'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    );
     }
+
     /**
      * Get columns.
      *
@@ -66,9 +65,15 @@ class WorkDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('name')->title('الاسم'),
-            Column::make('image')->title('الصوره'),
-            Column::make('action')->title('الاجرائات'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
+            Column::make('id'),
+            Column::make('add your columns'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
         ];
     }
 
@@ -79,6 +84,6 @@ class WorkDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Work_' . date('YmdHis');
+        return 'AboutUs_' . date('YmdHis');
     }
 }

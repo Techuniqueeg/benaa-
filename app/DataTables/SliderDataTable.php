@@ -2,13 +2,14 @@
 
 namespace App\DataTables;
 
+use App\Models\Slider;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class AdDataTable extends DataTable
+class SliderDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,18 +22,18 @@ class AdDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('image', '<img class="img-thumbnail" src="{{$image}}" style="height: 75px; width: 75px;">')
-            ->addColumn('action', 'dashboard.ad.parts.action')
+            ->addColumn('action', 'dashboard.slider.parts.action')
             ->rawColumns(['action', 'image']);
 
-
     }
+
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Ad $model
+     * @param \App\Models\Slider $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Ad $model)
+    public function query(Slider $model)
     {
         return $model->newQuery();
     }
@@ -45,14 +46,14 @@ class AdDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('ad-table')
+            ->setTableId('slider-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(0)
             ->lengthMenu(
                 [
                     [10, 25, 50, -1],
-                    ['10 صـفوف', '25 صـف', '50 صـف', 'كل الصـفوف']
+                    ['10 rows', '25 rows', '50 rows', 'Show all']
                 ])
             ->parameters([
                 'language' => ['url' => '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json']
@@ -67,9 +68,10 @@ class AdDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('url')->title('الرابط'),
             Column::make('image')->title('الصوره'),
+            Column::make('title')->title('عنوان الصوره'),
             Column::make('action')->title('الاجرائات'),
+
         ];
     }
 
@@ -80,6 +82,6 @@ class AdDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Ad_' . date('YmdHis');
+        return 'Slider_' . date('YmdHis');
     }
 }
