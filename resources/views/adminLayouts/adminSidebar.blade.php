@@ -14,13 +14,6 @@
                     <span class="menu-text">الصفحة الرئيسية</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if( Request::segment(1)== 'city' ) menu-item-open @endif"
-                aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('cities')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon2-location"></i>
-                    <span class="menu-text">المدن</span>
-                </a>
-            </li>
             @php($new=\App\Models\Inbox::where('seen','0')->count())
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'inboxes') menu-item-open @endif "
                 aria-haspopup="true" data-menu-toggle="hover">
