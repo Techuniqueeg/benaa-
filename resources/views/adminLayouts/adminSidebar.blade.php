@@ -73,7 +73,6 @@
                     <span class="menu-text">فريق العمل</span>
                 </a>
             </li>
-
             @php($new=\App\Models\Inbox::where('seen','0')->count())
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'inboxes') menu-item-open @endif "
                 aria-haspopup="true" data-menu-toggle="hover">
