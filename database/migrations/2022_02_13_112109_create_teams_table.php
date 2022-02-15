@@ -17,7 +17,7 @@ class CreateTeamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('job_title');
-            $table->string('image')->nullable()->default('default-user.png');
+            $table->string('image')->nullable()->default('default-user.jpg');
             $table->string('twitter')->nullable()->default('');
             $table->string('facebook')->nullable()->default('');
             $table->string('linked_in')->nullable()->default('');

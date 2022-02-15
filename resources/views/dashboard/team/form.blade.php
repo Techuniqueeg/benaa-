@@ -37,7 +37,7 @@
 
             <div class="image-input image-input-outline" id="kt_image_1">
                 <div class="image-input-wrapper {{ $errors->has('image') ? 'border-danger' : '' }}"
-                     style="background-image: url({{old('image', $data->image ?? 'default-user.png' )}})"></div>
+                     style="background-image: url({{old('image', $data->image ?? 'default-user.jpg' )}})"></div>
                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-warning btn-shadow"
                        data-action="change" data-toggle="tooltip" title=""
                        data-original-title="اختر صوره">
