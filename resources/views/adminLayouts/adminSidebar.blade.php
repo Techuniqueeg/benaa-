@@ -30,12 +30,39 @@
                     <span class="menu-text">صور العرض</span>
                 </a>
             </li>
-
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'services') menu-item-open @endif "
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{route('services')}}" class="menu-link menu-toggle">
                     <i class="menu-icon flaticon-squares-3"></i>
                     <span class="menu-text">الخدمات</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'categories') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('categories')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-pie-chart"></i>
+                    <span class="menu-text">الاقسام</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'locations') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('locations')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-pie-chart"></i>
+                    <span class="menu-text">المناطق</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'teams') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('teams')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-pie-chart"></i>
+                    <span class="menu-text">فريق العمل</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'areas') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('areas')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-pie-chart"></i>
+                    <span class="menu-text">المساحات</span>
                 </a>
             </li>
             @php($new=\App\Models\Inbox::where('seen','0')->count())

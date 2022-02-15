@@ -17,11 +17,11 @@ class CreateTeamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('job_title');
-            $table->string('image')->nullable();
-            $table->string('twitter')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('linked_in')->nullable();
-            $table->string('web')->nullable();
+            $table->string('image')->nullable()->default('default-user.png');
+            $table->string('twitter')->nullable()->default('');
+            $table->string('facebook')->nullable()->default('');
+            $table->string('linked_in')->nullable()->default('');
+            $table->string('web')->nullable()->default('');
             $table->timestamps();
         });
     }

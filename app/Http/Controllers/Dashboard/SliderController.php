@@ -65,7 +65,7 @@ class SliderController extends GeneralController
         } else {
             unset($data['image']);
         }
-        $this->model::where('id',$id)->update($data);;
+        $this->model::where('id',$id)->update($data);
 
 
         return redirect()->route($this->route)->with('success', 'تم التعديل بنجاح');

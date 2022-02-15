@@ -24,7 +24,7 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'logo' => 'nullable|mimes:jpeg,jpg,png',
+            'logo' => 'required|mimes:jpeg,jpg,png',
             'site_name' => 'required|string|max:191',
             'phone' => 'required|max:191|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
             'location' => 'nullable|string|max:191',

@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\AboutUsController;
+use App\Http\Controllers\Dashboard\AreaController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\LocationController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\InboxController;
+use App\Http\Controllers\Dashboard\TeamController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +55,45 @@ Route::group(['prefix' => 'services','middleware'=>'auth'],function () {
     Route::get('edit/{id}', [ServiceController::class, 'edit'])->name('services.edit');
     Route::post('update/{id}', [ServiceController::class, 'update'])->name('services.update');
     Route::get('delete/{id}', [ServiceController::class, 'delete'])->name('services.delete');
+});
+//categories
+Route::group(['prefix' => 'categories','middleware'=>'auth'],function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('categories');
+    Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::post('update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+});
+//areas
+Route::group(['prefix' => 'areas','middleware'=>'auth'],function () {
+    Route::get('/', [AreaController::class, 'index'])->name('areas');
+    Route::get('create', [AreaController::class, 'create'])->name('areas.create');
+    Route::post('store', [AreaController::class, 'store'])->name('areas.store');
+    Route::get('edit/{id}', [AreaController::class, 'edit'])->name('areas.edit');
+    Route::post('update/{id}', [AreaController::class, 'update'])->name('areas.update');
+    Route::get('delete/{id}', [AreaController::class, 'delete'])->name('areas.delete');
+});
+
+//locations
+Route::group(['prefix' => 'locations','middleware'=>'auth'],function () {
+    Route::get('/', [LocationController::class, 'index'])->name('locations');
+    Route::get('create', [LocationController::class, 'create'])->name('locations.create');
+    Route::post('store', [LocationController::class, 'store'])->name('locations.store');
+    Route::get('edit/{id}', [LocationController::class, 'edit'])->name('locations.edit');
+    Route::post('update/{id}', [LocationController::class, 'update'])->name('locations.update');
+    Route::get('delete/{id}', [LocationController::class, 'delete'])->name('locations.delete');
+});
+
+
+//locations
+Route::group(['prefix' => 'teams','middleware'=>'auth'],function () {
+    Route::get('/', [TeamController::class, 'index'])->name('teams');
+    Route::get('create', [TeamController::class, 'create'])->name('teams.create');
+    Route::post('store', [TeamController::class, 'store'])->name('teams.store');
+    Route::get('edit/{id}', [TeamController::class, 'edit'])->name('teams.edit');
+    Route::post('update/{id}', [TeamController::class, 'update'])->name('teams.update');
+    Route::get('delete/{id}', [TeamController::class, 'delete'])->name('teams.delete');
 });
 
 //sliders
