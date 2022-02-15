@@ -110,7 +110,7 @@ class GeneralController extends Controller
                 });
             }
             // Save Image in the Full Path
-            $image->save($fullPath, $this->quality ?? $this->quality, $this->encode);
+            $image->save(public_path($fullPath, $this->quality ?? $this->quality, $this->encode));
             // Check If Exist thumbnail Image
             if($thumbnailWidth || $thumbnailHeight) {
                 $this->thumbnailImage($file, $rename, $path, $thumbnailWidth, $thumbnailHeight, $watermark);
