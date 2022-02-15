@@ -14,13 +14,33 @@
                     <span class="menu-text">الصفحة الرئيسية</span>
                 </a>
             </li>
-            <li class="menu-item @if(request()->segment(1) == 'aboutUs') menu-item-active  @endif"
-                aria-haspopup="true">
-                <a href="{{route('about.edit','1')}}" class="menu-link">
-                    <i class="menu-icon flaticon-user-settings">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">من نحن</span>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'projects') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('projects')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon  flaticon2-cup"></i>
+                    <span class="menu-text">المشاريع</span>
+                </a>
+            </li>
+
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'categories') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('categories')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-pie-chart"></i>
+                    <span class="menu-text">الاقسام</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'locations') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('locations')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-placeholder-3"></i>
+                    <span class="menu-text">المناطق</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'areas') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('areas')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon2-arrow-1"></i>
+                    <span class="menu-text">المساحات</span>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'sliders') menu-item-open @endif "
@@ -37,34 +57,23 @@
                     <span class="menu-text">الخدمات</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'categories') menu-item-open @endif "
-                aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('categories')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon-pie-chart"></i>
-                    <span class="menu-text">الاقسام</span>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'locations') menu-item-open @endif "
-                aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('locations')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon-pie-chart"></i>
-                    <span class="menu-text">المناطق</span>
+            <li class="menu-item @if(request()->segment(1) == 'aboutUs') menu-item-active  @endif"
+                aria-haspopup="true">
+                <a href="{{route('about.edit','1')}}" class="menu-link">
+                    <i class="menu-icon flaticon-user-settings">
+                        <span></span>
+                    </i>
+                    <span class="menu-text">من نحن</span>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'teams') menu-item-open @endif "
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{route('teams')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon-pie-chart"></i>
+                    <i class="menu-icon flaticon-users"></i>
                     <span class="menu-text">فريق العمل</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'areas') menu-item-open @endif "
-                aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('areas')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon-pie-chart"></i>
-                    <span class="menu-text">المساحات</span>
-                </a>
-            </li>
+
             @php($new=\App\Models\Inbox::where('seen','0')->count())
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'inboxes') menu-item-open @endif "
                 aria-haspopup="true" data-menu-toggle="hover">

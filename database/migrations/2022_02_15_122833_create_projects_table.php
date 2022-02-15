@@ -17,12 +17,12 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
-            $table->string('name');
+            $table->foreignId('area_id')->constrained('areas')->onDelete('cascade');
             $table->string('image');
+            $table->string('name');
             $table->string('price');
-            $table->string('floors');
-            $table->longText('finishing');
-            $table->longText('note');
+            $table->longText('description');
+            $table->longText('feature');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\AboutUsController;
 use App\Http\Controllers\Dashboard\AreaController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\LocationController;
+use App\Http\Controllers\Dashboard\ProjectsController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\SliderController;
@@ -47,6 +48,15 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin');
 
 
+//services
+Route::group(['prefix' => 'projects','middleware'=>'auth'],function () {
+    Route::get('/', [ProjectsController::class, 'index'])->name('projects');
+    Route::get('create', [ProjectsController::class, 'create'])->name('projects.create');
+    Route::post('store', [ProjectsController::class, 'store'])->name('projects.store');
+    Route::get('edit/{id}', [ProjectsController::class, 'edit'])->name('projects.edit');
+    Route::post('update/{id}', [ProjectsController::class, 'update'])->name('projects.update');
+    Route::get('delete/{id}', [ProjectsController::class, 'delete'])->name('projects.delete');
+});
 //services
 Route::group(['prefix' => 'services','middleware'=>'auth'],function () {
     Route::get('/', [ServiceController::class, 'index'])->name('services');
