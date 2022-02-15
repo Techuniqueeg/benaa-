@@ -47,12 +47,12 @@ License: You must have a valid license purchased only from themeforest(the above
 <div class="d-flex flex-column flex-root">
     <!--begin::Login-->
     <div class="login login-5 login-signin-on d-flex flex-row-fluid" id="kt_login">
-        <div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url(/assets/media/bg/bg-9.jpg);">
+        <div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url(/assets/media/bg/bg-1.jpg);">
             <div class="login-form text-center text-white p-7 position-relative overflow-hidden">
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
                     <a href="#">
-                        <img src="{{ asset('/assets/media/logos/logo-letter-13.png') }}" class="max-h-75px" alt="" />
+                        <img src="{{settings('logo')}}" class="max-h-75px" alt="" />
                     </a>
                 </div>
                 <!--end::Login Header-->
