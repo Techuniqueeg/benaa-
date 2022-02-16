@@ -27,5 +27,9 @@ class Setting extends Model
         Self::updateOrCreate(['key' => $key], ['val' => $value]);
     }
     protected $hidden = ['updated_at', 'created_at'];
+    public function getLogoAttribute($image)
+    {
+        return asset('') .  $image;
+    }
 
 }
