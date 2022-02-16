@@ -38,11 +38,7 @@ Route::get('cache', function () {
     Artisan::call('route:clear');
     return 'success';
 });
-Route::get('newDatabase', function () {
-    Artisan::call('db:wipe');
-    Artisan::call('migrate');
-    return 'success';
-});
+
 
 Route::get('/',function (){return redirect()->route('admin');})->name('front.home');
 
