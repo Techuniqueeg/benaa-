@@ -10,7 +10,10 @@ class Project extends Model
     use HasFactory;
     protected $guarded=[];
     protected $hidden = ['updated_at', 'created_at'];
-
+    public function getImageAttribute($image)
+    {
+        return asset('') .  $image;
+    }
     public function Images()
     {
         return $this->hasMany(ProjectImages::class, 'project_id', 'id');
