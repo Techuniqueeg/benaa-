@@ -39,7 +39,8 @@ Route::get('cache', function () {
     return 'success';
 });
 Route::get('newDatabase', function () {
-    Artisan::call('migrate:refresh --seed');
+    Artisan::call('db:wipe');
+    Artisan::call('migrate');
     return 'success';
 });
 
