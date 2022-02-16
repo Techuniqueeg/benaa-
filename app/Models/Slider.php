@@ -13,6 +13,6 @@ class Slider extends Model
 
     public function getImageAttribute($image)
     {
-            return asset('') . '/' . $image;
+            return asset('') .  $image;
     }
 }
