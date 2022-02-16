@@ -79,7 +79,7 @@ class HomeFrontController extends Controller
 
     public function projects(Request $request)
     {
-        $data = Project::with(['Images', 'Category', 'Location'])->get();
+        $data = Project::with(['Images', 'Category', 'Location','Type'])->get();
         return msgdata($request, success(), 'تم عرض البيانات بنجاح', $data);
     }
 
@@ -111,6 +111,36 @@ class HomeFrontController extends Controller
         Inbox::create($data);
         return msgdata($request, success(), 'تم الارسال بنجاح', $data);
 
+
+    }
+    public function filtration(Request $request)
+    {
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'category_id' => 'required|exists:categories,id',
+            'location_id' => 'required|exists:locations,id',
+            'type_id' => 'required|exists:types,id',
+            'area_from' => 'required|numeric',
+            'area_to' => 'required|numeric',
+            'price_from' => 'required|numeric',
+            'price_to' => 'required|numeric',
+        ]);
+        if ($validator->fails()) {
+            return msgdata($request, failed(), $validator->messages()->first(), (object)[]);
+        }
+        $project=  Project::with(['Images', 'Category', 'Location','Type'])->where([
+            ['area_from', '>=', $request->area_from],
+            ['area_to', '<=', $request->area_to],
+            ['price_from', '>=', $request->price_from],
+            ['price_to', '<=', $request->price_to],
+            ['category_id', '=', $request->category_id],
+            ['location_id', '=', $request->location_id],
+            ['type_id', '=', $request->type_id],
+        ])->get();
+        if ($project){
+            return msgdata($request, success(), 'تم العرض بنجاح', $project);
+        }
+        return msg($request, success(), 'لا يوجد مشروع بهاذا الوصف');
 
     }
 }

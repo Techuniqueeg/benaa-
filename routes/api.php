@@ -38,6 +38,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('/blogs/all', [HomeFrontController::class, 'blogs']);
     Route::get('/locations', [HomeFrontController::class, 'locations']);
     Route::get('/categories', [HomeFrontController::class, 'categories']);
+    Route::post('/filter', [HomeFrontController::class, 'filtration']);
 
 });
 Route::group(['middleware' => 'jwt.verify'], function () {
