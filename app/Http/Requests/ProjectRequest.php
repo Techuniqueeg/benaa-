@@ -28,6 +28,7 @@ class ProjectRequest extends FormRequest
         return [
             'category_id' => 'required|exists:categories,id',
             'location_id' => 'required|exists:locations,id',
+            'type_id' => 'required|exists:types,id',
             'name' => 'required|string|max:255',
             'area_from' => 'required|numeric',
             'area_to' => 'required|numeric',

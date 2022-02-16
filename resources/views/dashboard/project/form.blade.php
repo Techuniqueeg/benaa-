@@ -34,7 +34,7 @@
         <label>النوع</label>
         <select name="type_id"
                 class="form-control form-control-solid form-control-lg">
-            @foreach($Category as $row)
+            @foreach($Type as $row)
                 <option
                     @if(Request::segment(1)== 'projects' && Request::segment(2)== 'edit')
                     {{ $row->id == old('type_id',  $data->type_id)  ? 'selected' : '' }}
@@ -148,7 +148,7 @@
                     </div>
                 @endif
 
-                <div class="dropzone dropzone-default dropzone-warning"
+                <div class="dropzone dropzone-default dropzone-warning {{ $errors->has('image') ? 'border-danger' : '' }}"
                      id="kt_dropzone_car">
                     <div class="dropzone-msg dz-message needsclick ">
                         <h3 class="dropzone-msg-title">يمكنك اضافه اكثر من صوره</h3>
