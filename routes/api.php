@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\HomeFrontController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/logout', [UserController::class, 'logout']);
+});
+
+//home
+Route::group(['middleware' => 'api'], function () {
+    Route::post('/project/{id}', [HomeFrontController::class, 'projectDetails']);
+    Route::get('/project/all', [HomeFrontController::class, 'projects']);
+    Route::get('/sliders', [HomeFrontController::class, 'sliders']);
+    Route::get('/services', [HomeFrontController::class, 'services']);
+    Route::get('/teams', [HomeFrontController::class, 'team']);
+    Route::get('/aboutus', [HomeFrontController::class, 'aboutUs']);
+    Route::get('/settings', [HomeFrontController::class, 'settings']);
 });

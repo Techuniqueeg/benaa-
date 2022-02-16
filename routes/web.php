@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\AboutUsController;
 use App\Http\Controllers\Dashboard\AreaController;
+use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\LocationController;
 use App\Http\Controllers\Dashboard\ProjectsController;
@@ -95,6 +96,15 @@ Route::group(['prefix' => 'locations','middleware'=>'auth'],function () {
     Route::get('edit/{id}', [LocationController::class, 'edit'])->name('locations.edit');
     Route::post('update/{id}', [LocationController::class, 'update'])->name('locations.update');
     Route::get('delete/{id}', [LocationController::class, 'delete'])->name('locations.delete');
+});
+//blog
+Route::group(['prefix' => 'blogs','middleware'=>'auth'],function () {
+    Route::get('/', [BlogController::class, 'index'])->name('blogs');
+    Route::get('create', [BlogController::class, 'create'])->name('blogs.create');
+    Route::post('store', [BlogController::class, 'store'])->name('blogs.store');
+    Route::get('edit/{id}', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::post('update/{id}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::get('delete/{id}', [BlogController::class, 'delete'])->name('blogs.delete');
 });
 
 

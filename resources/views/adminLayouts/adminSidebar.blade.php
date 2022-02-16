@@ -36,6 +36,13 @@
                     <span class="menu-text">المناطق</span>
                 </a>
             </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'blogs') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('blogs')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon  flaticon2-open-text-book"></i>
+                    <span class="menu-text">المقالات</span>
+                </a>
+            </li>
 {{--            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'areas') menu-item-open @endif "--}}
 {{--                aria-haspopup="true" data-menu-toggle="hover">--}}
 {{--                <a href="{{route('areas')}}" class="menu-link menu-toggle">--}}

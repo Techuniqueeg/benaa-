@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
+    protected $hidden = ['updated_at', 'created_at'];
     protected $guarded = [];
 
 }
