@@ -40,7 +40,7 @@ Route::get('cache', function () {
 });
 Route::get('newDatabase', function () {
     Artisan::call('db:wipe');
-    Artisan::call('migrate');
+//    Artisan::call('migrate');
     return 'success';
 });
 
