@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\InboxController;
 use App\Http\Controllers\Dashboard\TeamController;
+use App\Http\Controllers\Dashboard\TypeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,11 @@ Route::get('cache', function () {
     Artisan::call('route:clear');
     return 'success';
 });
-
+Route::get('newDatabase', function () {
+    Artisan::call('db:wipe');
+    Artisan::call('migrate');
+    return 'success';
+});
 
 Route::get('/',function (){return redirect()->route('admin');})->name('front.home');
 
@@ -96,6 +101,15 @@ Route::group(['prefix' => 'locations','middleware'=>'auth'],function () {
     Route::get('edit/{id}', [LocationController::class, 'edit'])->name('locations.edit');
     Route::post('update/{id}', [LocationController::class, 'update'])->name('locations.update');
     Route::get('delete/{id}', [LocationController::class, 'delete'])->name('locations.delete');
+});
+//types
+Route::group(['prefix' => 'types','middleware'=>'auth'],function () {
+    Route::get('/', [TypeController::class, 'index'])->name('types');
+    Route::get('create', [TypeController::class, 'create'])->name('types.create');
+    Route::post('store', [TypeController::class, 'store'])->name('types.store');
+    Route::get('edit/{id}', [TypeController::class, 'edit'])->name('types.edit');
+    Route::post('update/{id}', [TypeController::class, 'update'])->name('types.update');
+    Route::get('delete/{id}', [TypeController::class, 'delete'])->name('types.delete');
 });
 //blog
 Route::group(['prefix' => 'blogs','middleware'=>'auth'],function () {

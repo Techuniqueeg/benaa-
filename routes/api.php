@@ -34,4 +34,13 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('/teams', [HomeFrontController::class, 'team']);
     Route::get('/aboutus', [HomeFrontController::class, 'aboutUs']);
     Route::get('/settings', [HomeFrontController::class, 'settings']);
+    Route::post('/blog/{id}', [HomeFrontController::class, 'blogsDetails']);
+    Route::get('/blogs/all', [HomeFrontController::class, 'blogs']);
+    Route::get('/locations', [HomeFrontController::class, 'locations']);
+    Route::get('/categories', [HomeFrontController::class, 'categories']);
+
+});
+Route::group(['middleware' => 'jwt.verify'], function () {
+    Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
+
 });

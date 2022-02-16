@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Project;
 use App\Models\ProjectImages;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectsController extends GeneralController
@@ -35,7 +36,8 @@ class ProjectsController extends GeneralController
     {
         $Location=Location::all();
         $Category=Category::all();
-        return view('dashboard.' . $this->viewPath . '.create',compact('Category','Location'));
+        $Type=Type::all();
+        return view('dashboard.' . $this->viewPath . '.create',compact('Category','Location','Type'));
     }
     public function uploadProjectImage(Request $request)
     {
@@ -73,8 +75,9 @@ class ProjectsController extends GeneralController
     {
         $Location=Location::get();
         $Category=Category::all();
+        $Type=Type::all();
         $data = $this->model::with('Images')->findOrFail($id);
-        return view('dashboard.' . $this->viewPath . '.edit', compact('data','Category','Location'));
+        return view('dashboard.' . $this->viewPath . '.edit', compact('data','Category','Location','Type'));
     }
 
     public function update(ProjectRequest $request, $id)

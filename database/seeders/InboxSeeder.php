@@ -15,7 +15,7 @@ class InboxSeeder extends Seeder
     public function run()
     {
         $inbox = Inbox::create([
-            'f_image' => 'admin',
+            'f_name' => 'admin',
             'l_name' => 'admin',
             'user_id' => '1',
             'email' => 'admin@admin.com',

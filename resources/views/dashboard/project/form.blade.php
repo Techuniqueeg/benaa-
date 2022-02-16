@@ -30,7 +30,22 @@
                    maxlength="255"/>
         </div>
     </div>
-    <div class="form-group col-6">
+    <div class="form-group col-4">
+        <label>النوع</label>
+        <select name="type_id"
+                class="form-control form-control-solid form-control-lg">
+            @foreach($Category as $row)
+                <option
+                    @if(Request::segment(1)== 'projects' && Request::segment(2)== 'edit')
+                    {{ $row->id == old('type_id',  $data->type_id)  ? 'selected' : '' }}
+                    @else
+                    {{ $row->id == old('type_id') ? 'selected' : '' }}
+                    @endif
+                    value="{{ $row->id }}">{{ $row->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group col-4">
         <label>القسم</label>
         <select name="category_id"
                 class="form-control form-control-solid form-control-lg">
@@ -45,7 +60,7 @@
             @endforeach
         </select>
     </div>
-    <div class="form-group col-6">
+    <div class="form-group col-4">
         <label>المنطقه</label>
         <select name="location_id"
                 class="form-control form-control-solid form-control-lg">

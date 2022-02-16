@@ -23,4 +23,8 @@ class Project extends Model
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
+    public function Type()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
+    }
 }

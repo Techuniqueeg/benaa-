@@ -16,7 +16,7 @@ class CreateInboxesTable extends Migration
         Schema::create('inboxes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('f_image');
+            $table->string('f_name');
             $table->string('l_name');
             $table->string('phone');
             $table->string('email');
