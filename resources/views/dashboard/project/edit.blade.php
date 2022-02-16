@@ -49,5 +49,33 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $('#kt_dropzone_car').dropzone({
+            paramName: "dzfile", // The name that will be used to transfer the file
+            // autoProcessQueue: false,
+            maxFilesize: 10, // MB
+            clickable: true,
+            addRemoveLinks: true,
+            acceptedFiles: 'image/*',
+            dictFallbackMessage: " المتصفح الخاص بكم لا يدعم خاصيه تعدد الصوره والسحب والافلات ",
+            dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
+            dictCancelUpload: "الغاء الرفع ",
+            dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
+            dictRemoveFile: "حذف الصوره",
+            dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
+            headers: {
+                'X-CSRF-TOKEN':
+                    "{{ csrf_token() }}"
+            }
+            ,
+            url: "{{ route('projects.upload.images') }}", // Set the url
+            success:
+                function (file, response) {
+                    $('form').append('<input type="hidden" name="images[]" value="' + response.name + '">')
+                },
+
+        });
+    </script>
+
 @endsection
 

@@ -14,6 +14,13 @@
                maxlength="255"/>
     </div>
     <div class="form-group  col-6">
+        <label>رقم الهاتف<span
+                class="text-danger">*</span></label>
+        <input name="phone" placeholder="ادخل رقم الهاتف" value="{{ old('phone', $data->phone ?? '') }}"
+               class="form-control  {{ $errors->has('phone') ? 'border-danger' : '' }}" type="number"
+               maxlength="255"/>
+    </div>
+    <div class="form-group  col-6">
         <label>رابط الفيسبوك</label>
         <input name="facebook" placeholder="ادخل رابط الفيسبوك" value="{{ old('facebook', $data->facebook ?? '') }}"
                class="form-control  {{ $errors->has('facebook') ? 'border-danger' : '' }}" type="url"

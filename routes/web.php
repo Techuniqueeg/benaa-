@@ -56,6 +56,8 @@ Route::group(['prefix' => 'projects','middleware'=>'auth'],function () {
     Route::get('edit/{id}', [ProjectsController::class, 'edit'])->name('projects.edit');
     Route::post('update/{id}', [ProjectsController::class, 'update'])->name('projects.update');
     Route::get('delete/{id}', [ProjectsController::class, 'delete'])->name('projects.delete');
+    Route::get('delete/image/{id}', [ProjectsController::class, 'deleteProjectImage'])->name('projects.image.delete');
+    Route::post('upload_images', [ProjectsController::class, 'uploadProjectImage'])->name('projects.upload.images');
 });
 //services
 Route::group(['prefix' => 'services','middleware'=>'auth'],function () {
@@ -76,14 +78,14 @@ Route::group(['prefix' => 'categories','middleware'=>'auth'],function () {
     Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
 });
 //areas
-Route::group(['prefix' => 'areas','middleware'=>'auth'],function () {
-    Route::get('/', [AreaController::class, 'index'])->name('areas');
-    Route::get('create', [AreaController::class, 'create'])->name('areas.create');
-    Route::post('store', [AreaController::class, 'store'])->name('areas.store');
-    Route::get('edit/{id}', [AreaController::class, 'edit'])->name('areas.edit');
-    Route::post('update/{id}', [AreaController::class, 'update'])->name('areas.update');
-    Route::get('delete/{id}', [AreaController::class, 'delete'])->name('areas.delete');
-});
+//Route::group(['prefix' => 'areas','middleware'=>'auth'],function () {
+//    Route::get('/', [AreaController::class, 'index'])->name('areas');
+//    Route::get('create', [AreaController::class, 'create'])->name('areas.create');
+//    Route::post('store', [AreaController::class, 'store'])->name('areas.store');
+//    Route::get('edit/{id}', [AreaController::class, 'edit'])->name('areas.edit');
+//    Route::post('update/{id}', [AreaController::class, 'update'])->name('areas.update');
+//    Route::get('delete/{id}', [AreaController::class, 'delete'])->name('areas.delete');
+//});
 
 //locations
 Route::group(['prefix' => 'locations','middleware'=>'auth'],function () {

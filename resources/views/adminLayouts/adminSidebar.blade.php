@@ -36,13 +36,13 @@
                     <span class="menu-text">المناطق</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'areas') menu-item-open @endif "
-                aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('areas')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon2-arrow-1"></i>
-                    <span class="menu-text">المساحات</span>
-                </a>
-            </li>
+{{--            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'areas') menu-item-open @endif "--}}
+{{--                aria-haspopup="true" data-menu-toggle="hover">--}}
+{{--                <a href="{{route('areas')}}" class="menu-link menu-toggle">--}}
+{{--                    <i class="menu-icon flaticon2-arrow-1"></i>--}}
+{{--                    <span class="menu-text">المساحات</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'sliders') menu-item-open @endif "
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{route('sliders')}}" class="menu-link menu-toggle">

@@ -27,6 +27,7 @@ class TeamRequest extends FormRequest
             'name' => 'required|string|max:255',
             'job_title' => 'required|string|max:255',
             'image' => 'nullable|mimes:jpeg,jpg,png',
+            'phone' => 'required|max:255|min:11|regex:/^([0-9\s\-\+\(\)]*)$/',
             'twitter' => 'nullable|url|max:255',
             'facebook' => 'nullable|url|max:255',
             'linkedin' => 'nullable|url|max:255',

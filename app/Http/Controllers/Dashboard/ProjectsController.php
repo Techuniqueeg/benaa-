@@ -10,6 +10,7 @@ use App\Models\Area;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Project;
+use App\Models\ProjectImages;
 use Illuminate\Http\Request;
 
 class ProjectsController extends GeneralController
@@ -33,9 +34,19 @@ class ProjectsController extends GeneralController
     public function create()
     {
         $Location=Location::all();
-        $Area=Area::all();
         $Category=Category::all();
-        return view('dashboard.' . $this->viewPath . '.create',compact('Category','Area','Location'));
+        return view('dashboard.' . $this->viewPath . '.create',compact('Category','Location'));
+    }
+    public function uploadProjectImage(Request $request)
+    {
+        $file = $request->file('dzfile');
+        if ($file) {
+            $image = $this->uploadImage($file, $this->image_path, null, 300);
+        }
+        return response()->json([
+            'name' => $image,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
 
     public function store(ProjectRequest $request)
@@ -46,22 +57,32 @@ class ProjectsController extends GeneralController
                 $data['image'] = $this->uploadImage($request->file('image'), $this->image_path, null, 300);
             }
         }
-        $trip = $this->model::create($data);
+        unset($data['images']);
+        $project = $this->model::create($data);
+        if ($request->images) {
+            foreach ($request->images as $row) {
+                $project_images_data['image'] = $row;
+                $project_images_data['project_id'] = $project->id;
+                ProjectImages::create($project_images_data);
+            }
+        }
         return redirect()->route($this->route)->with('success', 'تم الاضافه بنجاح');
     }
 
     public function edit($id)
     {
         $Location=Location::get();
-        $Area=Area::all();
         $Category=Category::all();
-        $data = $this->model::findOrFail($id);
-        return view('dashboard.' . $this->viewPath . '.edit', compact('data','Category','Area','Location'));
+        $data = $this->model::with('Images')->findOrFail($id);
+        return view('dashboard.' . $this->viewPath . '.edit', compact('data','Category','Location'));
     }
 
     public function update(ProjectRequest $request, $id)
     {
+
         $data = $request->all();
+        unset($data['images']);
+
         $item = $this->model->find($id);
         unset($data['_token']);
         if ($request->image) {
@@ -70,6 +91,15 @@ class ProjectsController extends GeneralController
             }
         } else {
             unset($data['image']);
+        }
+        if ($request->images) {
+            foreach ($request->images as $row) {
+                $project_images_data['image'] = $row;
+                $project_images_data['project_id'] = $id;
+                ProjectImages::create($project_images_data);
+            }
+        } else {
+            unset($data['images']);
         }
         $this->model::where('id',$id)->update($data);
         return redirect()->route($this->route)->with('success', 'تم الاضافه بنجاح');
@@ -81,6 +111,18 @@ class ProjectsController extends GeneralController
         $data = $this->model::findOrFail($id);
         $data->delete();
         return redirect()->back()->with('success', 'تم الحذف بنجاح');
+    }
+    public function deleteProjectImage($id)
+    {
+        $data = ProjectImages::findOrFail($id);
+
+        if (ProjectImages::where('project_id', $data->project_id)->count() > 1) {
+            $data->delete();
+            return back()->with('success', 'تم حذف الصوره بنجاج');
+        } else {
+            return back()->with('danger', 'لا يمكن حذف , لابد من وجود علي الاقل صوره واحده');
+        }
+
     }
 
 }

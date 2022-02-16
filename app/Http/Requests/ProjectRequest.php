@@ -28,14 +28,23 @@ class ProjectRequest extends FormRequest
         return [
             'category_id' => 'required|exists:categories,id',
             'location_id' => 'required|exists:locations,id',
-            'area_id' => 'required|exists:areas,id',
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
+            'area_from' => 'required|numeric',
+            'area_to' => 'required|numeric',
+            'price_from' => 'required|numeric',
+            'price_to' => 'required|numeric',
             'description' => 'required|string',
             'feature' => 'required|string',
             'image' => [
                 'nullable',
                 'mimes:jpeg,jpg,png',
+                Rule::requiredIf(function () {
+                    return Request::routeIs('projects.store');
+                })
+            ],
+            'images' => [
+                'nullable',
+                'array',
                 Rule::requiredIf(function () {
                     return Request::routeIs('projects.store');
                 })

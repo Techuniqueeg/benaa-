@@ -1,5 +1,5 @@
 <div class="card-body row">
-    <div class="form-group  col-6">
+    <div class="form-group  col-12">
         <label>عنوان المشروع<span
                 class="text-danger">*</span></label>
         <input name="name" placeholder="ادخل عنوان المشروع" value="{{ old('name', $data->name ?? '') }}"
@@ -7,13 +7,30 @@
                maxlength="255"/>
     </div>
     <div class="form-group  col-6">
-        <label>سعر المشروع<span
+        <label class="" >اسعار المشروع<span
                 class="text-danger">*</span></label>
-        <input name="price" placeholder="ادخل سعر المشروع" value="{{ old('price', $data->price ?? '') }}"
-               class="form-control  {{ $errors->has('price') ? 'border-danger' : '' }}" type="number"
-               maxlength="255"/>
+        <div class="row">
+            <input name="price_from" placeholder="ادخل اقل سعر" value="{{ old('price_from', $data->price_from ?? '') }}"
+                   class="form-control col-6  {{ $errors->has('price_from') ? 'border-danger' : '' }}" type="number"
+                   maxlength="255"/>
+            <input name="price_to" placeholder="ادخل اعلي سعر" value="{{ old('price_to', $data->price_to ?? '') }}"
+                   class="form-control  col-6  {{ $errors->has('price_to') ? 'border-danger' : '' }}" type="number"
+                   maxlength="255"/>
+        </div>
     </div>
-    <div class="form-group col-4">
+    <div class="form-group  col-6">
+        <label class="" >مساحات المشروع<span
+                class="text-danger">*</span></label>
+        <div class="row">
+            <input name="area_from" placeholder="ادخل اقل مساحه" value="{{ old('area_from', $data->area_from ?? '') }}"
+                   class="form-control col-6  {{ $errors->has('area_from') ? 'border-danger' : '' }}" type="number"
+                   maxlength="255"/>
+            <input name="area_to" placeholder="ادخل اعلي مساحه" value="{{ old('area_to', $data->area_to ?? '') }}"
+                   class="form-control  col-6  {{ $errors->has('area_to') ? 'border-danger' : '' }}" type="number"
+                   maxlength="255"/>
+        </div>
+    </div>
+    <div class="form-group col-6">
         <label>القسم</label>
         <select name="category_id"
                 class="form-control form-control-solid form-control-lg">
@@ -28,22 +45,7 @@
             @endforeach
         </select>
     </div>
-    <div class="form-group col-4">
-        <label>المساحه</label>
-        <select name="area_id"
-                class="form-control form-control-solid form-control-lg">
-            @foreach($Area as $row)
-                <option
-                    @if(Request::segment(1)== 'projects' && Request::segment(2)== 'edit')
-                    {{ $row->id == old('area_id',  $data->area_id)  ? 'selected' : '' }}
-                    @else
-                    {{ $row->id == old('area_id') ? 'selected' : '' }}
-                    @endif
-                    value="{{ $row->id }}">{{ $row->area }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group col-4">
+    <div class="form-group col-6">
         <label>المنطقه</label>
         <select name="location_id"
                 class="form-control form-control-solid form-control-lg">
@@ -63,7 +65,8 @@
                 class="text-danger">*</span></label>
         <div class="">
                 <textarea class="form-control {{ $errors->has('feature') ? 'border-danger' : '' }} "
-                          placeholder="ادخل المميزات"      name="feature" rows="5" >{{ old('feature', $data->feature ?? '') }}</textarea>
+                          placeholder="ادخل المميزات" name="feature"
+                          rows="5">{{ old('feature', $data->feature ?? '') }}</textarea>
         </div>
     </div>
     <div class="form-group col-12">
@@ -71,11 +74,12 @@
                 class="text-danger">*</span></label>
         <div class="">
                 <textarea class="form-control {{ $errors->has('description') ? 'border-danger' : '' }} "
-                          placeholder="ادخل الملحوظات"      name="description" rows="5" >{{ old('description', $data->description ?? '') }}</textarea>
+                          placeholder="ادخل الملحوظات" name="description"
+                          rows="5">{{ old('description', $data->description ?? '') }}</textarea>
         </div>
     </div>
     <div class="form-group col-md-6">
-        <label>صورة المشروع<span
+        <label>صورة المشروع الاساسيه<span
                 class="text-danger">*</span></label>
         <div class="col-lg-8">
 
@@ -94,6 +98,47 @@
 
                       <i class="ki ki-bold-close icon-xs text-muted"></i>
                      </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <br>
+        <br>
+        <h6 class="text-dark">صورة المشروع الاضافيه<span
+                class="text-danger">*</span></h6>
+        <div class="card-body col-12">
+
+            <div class="form-group ">
+
+                @if(Request::segment(1)== 'projects' && Request::segment(2)== 'edit')
+                    <div class="row">
+                        <div class="card-body col-12">
+                            <div class="carousel-item active">
+
+                                <div class="col-12">
+                                    @foreach($data->Images as $c)
+                                        <a style="position: absolute;"
+                                           class="btn btn-icon btn-danger btn-circle btn-sm"
+                                           onclick="confirm('هل متاكد من الحذف؟')"
+                                           href="{{route('projects.image.delete',$c->id)}}">
+                                            <i class="icon-nm fas far fa-trash"
+                                               aria-hidden='true'></i>
+                                        </a>
+                                        <img class="p-2 img-thumbnail" style="height: 150px; width: 150px;"
+                                             src="{{$c->image}}">
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="dropzone dropzone-default dropzone-warning"
+                     id="kt_dropzone_car">
+                    <div class="dropzone-msg dz-message needsclick ">
+                        <h3 class="dropzone-msg-title">يمكنك اضافه اكثر من صوره</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

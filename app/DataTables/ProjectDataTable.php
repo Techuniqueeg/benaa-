@@ -21,8 +21,9 @@ class ProjectDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('image', '<img class="img-thumbnail" src="{{$image}}" style="height: 75px; width: 75px;">')
             ->addColumn('action', 'dashboard.project.parts.action')
-            ->rawColumns(['action']);
+            ->rawColumns(['action', 'image']);
     }
 
     /**
@@ -67,7 +68,7 @@ class ProjectDataTable extends DataTable
     {
         return [
             Column::make('name')->title('الاسم'),
-            Column::make('price')->title('السعر'),
+            Column::make('image')->title('الصوره الرئيسيه'),
             Column::make('action')->title('الاجرائات'),
         ];
     }

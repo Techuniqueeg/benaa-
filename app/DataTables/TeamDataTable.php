@@ -68,6 +68,7 @@ class TeamDataTable extends DataTable
         return [
             Column::make('name')->title('الاسم'),
             Column::make('job_title')->title('المسمي الوظيفي'),
+            Column::make('phone')->title('رقم الهاتف'),
             Column::make('action')->title('الاجرائات'),
         ];
     }
