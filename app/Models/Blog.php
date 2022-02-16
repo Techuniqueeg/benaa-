@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    protected $guarded = [];
-    protected $hidden = ['updated_at', 'created_at'];
-
     use HasFactory;
+    protected $guarded = [];
+
+    protected $hidden = ['updated_at', 'created_at'];
+    public function getImageAttribute($image)
+    {
+        return asset('') .  $image;
+    }
 }
