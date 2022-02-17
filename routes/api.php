@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\HomeFrontController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Dashboard\FavouriteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,14 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/filter', [HomeFrontController::class, 'filtration']);
 
 });
+
+//inbox
 Route::group(['middleware' => 'jwt.verify'], function () {
     Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
+    // favourite
+    Route::get('allFavourite', [FavouriteController::class, 'all']);
+    Route::post('addFavourite', [FavouriteController::class, 'add']);
+    Route::post('deleteFavourite', [FavouriteController::class, 'delete']);
+
 
 });

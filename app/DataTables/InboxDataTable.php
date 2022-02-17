@@ -69,7 +69,7 @@ class InboxDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('f_image')->title('الاسم الاول'),
+            Column::make('f_name')->title('الاسم الاول'),
             Column::make('l_name')->title('الاسم الثاني'),
             Column::make('phone')->title('رقم الهاتف'),
             Column::make('action')->title('تفاصيل الرسالة'),
