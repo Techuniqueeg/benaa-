@@ -44,8 +44,8 @@ Route::group(['middleware' => 'api'], function () {
 });
 
 //inbox
+Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
 Route::group(['middleware' => 'jwt.verify'], function () {
-    Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
     // favourite
     Route::get('allFavourite', [FavouriteController::class, 'all']);
     Route::post('addFavourite', [FavouriteController::class, 'add']);
