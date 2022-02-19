@@ -100,6 +100,7 @@ class HomeFrontController extends Controller
         $validator = Validator::make($data, [
             'f_name' => 'required|string|max:255',
             'l_name' => 'required|string|max:255',
+            'phone' => 'required|max:255|regex:/^([0-9\s\-\+\(\)]*)$/',
             'email' => 'required|email|max:255',
             'message' => 'required',
         ]);
