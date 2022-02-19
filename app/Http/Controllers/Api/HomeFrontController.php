@@ -107,7 +107,7 @@ class HomeFrontController extends Controller
         if ($validator->fails()) {
             return msgdata($request, failed(), $validator->messages()->first(), (object)[]);
         }
-        $data['user_id'] = '5';
+        $data['user_id'] = auth('api')->user()->id;
         Inbox::create($data);
         return msgdata($request, success(), 'تم الارسال بنجاح', $data);
 
