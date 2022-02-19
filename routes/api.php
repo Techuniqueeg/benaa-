@@ -29,7 +29,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 //home
 Route::group(['middleware' => 'api'], function () {
     Route::post('/project/{id}', [HomeFrontController::class, 'projectDetails']);
-    Route::get('/project/all', [HomeFrontController::class, 'projects']);
     Route::get('/sliders', [HomeFrontController::class, 'sliders']);
     Route::get('/services', [HomeFrontController::class, 'services']);
     Route::get('/teams', [HomeFrontController::class, 'team']);
@@ -42,11 +41,11 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/filter', [HomeFrontController::class, 'filtration']);
 
 });
+Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
 
 Route::group(['middleware' => 'jwt.verify'], function () {
 
 //inbox
-    Route::post('/send/inbox', [HomeFrontController::class, 'inbox']);
     // favourite
     Route::get('allFavourite', [FavouriteController::class, 'all']);
     Route::post('addFavourite', [FavouriteController::class, 'add']);

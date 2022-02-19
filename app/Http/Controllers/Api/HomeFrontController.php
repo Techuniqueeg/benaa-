@@ -96,6 +96,7 @@ class HomeFrontController extends Controller
 
     public function inbox(Request $request)
     {
+        return 'here';
         $data = $request->all();
         $validator = Validator::make($data, [
             'f_name' => 'required|string|max:255',
