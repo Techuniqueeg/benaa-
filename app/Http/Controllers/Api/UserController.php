@@ -41,11 +41,6 @@ class UserController extends Controller
         ], 201);
     }
 
-    /**
-     * login user
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function login(Request $request)
     {
 

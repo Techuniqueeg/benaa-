@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\InboxController;
 use App\Http\Controllers\Dashboard\TeamController;
 use App\Http\Controllers\Dashboard\TypeController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,20 @@ Route::get('/',function (){return redirect()->route('admin');})->name('front.hom
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('admin');
+
+
+
+// users Route
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+
+    Route::get('/', [UserController::class, 'index'])->name('users');
+    Route::get('show/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('create', [UserController::class, 'create'])->name('users.create');
+    Route::post('store', [UserController::class, 'store'])->name('users.store');
+    Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('update/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::get('delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+});
 
 
 //services

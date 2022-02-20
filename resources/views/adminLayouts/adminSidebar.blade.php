@@ -64,6 +64,13 @@
                     <span class="menu-text">صور العرض</span>
                 </a>
             </li>
+            <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'user') menu-item-open @endif "
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('users')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon fas fa-user"></i>
+                    <span class="menu-text">العملاء</span>
+                </a>
+            </li>
             <li class="menu-item menu-item-submenu @if(request()->segment(1) == 'services') menu-item-open @endif "
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{route('services')}}" class="menu-link menu-toggle">
