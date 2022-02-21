@@ -32,7 +32,7 @@
             <input type="url" name="facebook" id="facebook"
                    value="{{ old('facebook', $data->where('key', 'facebook')->first()->val) }}"
                    class="form-control {{ $errors->has('facebook') ? 'border-danger' : '' }}"
-                   placeholder="أدخل رابط العنوان"/>
+                   placeholder="أدخل الفيسبوك"/>
         </div>
     </div>
     <div class="col-lg-6  col-md-6">
