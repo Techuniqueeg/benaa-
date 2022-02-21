@@ -28,7 +28,7 @@
     </div>
     <div class="col-lg-6  col-md-6">
         <div class="form-group ">
-            <label for="facebook">رابط العنوان </label>
+            <label for="facebook">رابط الفيسبوك </label>
             <input type="url" name="facebook" id="facebook"
                    value="{{ old('facebook', $data->where('key', 'facebook')->first()->val) }}"
                    class="form-control {{ $errors->has('facebook') ? 'border-danger' : '' }}"
